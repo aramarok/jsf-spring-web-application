@@ -1,0 +1,74 @@
+<f:subview xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<!-- Panel Tab 2 ###################################### -->
+	<ice:panelTab rendered="#{SessionBean.fisiereVisible}"
+		label="#{msg['home.tabset.fisiere']}"
+		title="#{msg['home.tabset.fisiere']}'">
+
+		<ice:panelGroup>
+			<ice:panelGrid columns="2">
+
+				<ice:tree id="tree" value="#{FisiereBean.model}" var="item"
+					hideRootNode="false" hideNavigation="false"
+					style="border-width: 1px; border: solid; padding:10px;"
+					imageDir="./xmlhttp/css/xp/css-images/"
+					rendered="#{FisiereBean.modelNull}">
+
+
+					<ice:treeNode>
+						<f:facet name="icon">
+							<ice:panelGroup style="display: inline">
+								<h:graphicImage value="#{item.userObject.icon}" />
+							</ice:panelGroup>
+						</f:facet>
+						<f:facet name="content">
+							<ice:panelGroup style="display: inline">
+								<ice:commandLink value="#{item.userObject.text}"
+									actionListener="#{item.userObject.click}" />
+							</ice:panelGroup>
+						</f:facet>
+					</ice:treeNode>
+				</ice:tree>
+
+
+
+				<ice:panelGroup>
+					<ice:outputLabel value="#{msg['home.tabset.fisiere.curent']}" />
+					<ice:outputText value="#{FisiereBean.dir}" />
+
+					<ice:panelGroup
+						style="border-width: 1px; border: solid; padding:10px;">
+						<!-- <fieldset> -->
+						<ice:outputText value="#{msg['home.tabset.fisiere.text1']}" />
+						<ice:panelGrid columns="2">
+							<ice:outputLabel value="#{msg['home.tabset.fisiere.director']}"
+								for="director" />
+							<ice:inputText id="director" value="#{FisiereBean.director}" />
+						</ice:panelGrid>
+						<ice:commandButton value="#{msg['home.tabset.fisiere.creaza']}"
+							action="#{FisiereBean.creaza}" />
+						<!-- </fieldset> -->
+					</ice:panelGroup>
+
+					<br />
+					<ice:panelGroup
+						style="border-width: 1px; border: solid; padding:10px;">
+						<!-- <fieldset> -->
+						<ice:outputText value="#{msg['home.tabset.fisiere.text2']}" />
+						<br />
+						<ice:inputFile id="inputFileName"
+							actionListener="#{FisiereBean.uploadFile}" />
+						<!-- </fieldset> -->
+					</ice:panelGroup>
+
+				</ice:panelGroup>
+
+			</ice:panelGrid>
+		</ice:panelGroup>
+
+	</ice:panelTab>
+
+</f:subview>
+

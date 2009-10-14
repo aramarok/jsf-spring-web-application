@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+	 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	 	http://www.springframework.org/schema/tx
+	 	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	 	http://www.springframework.org/schema/util
+	 	http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<bean id="services" class="com.aci.training.bl.Services">
+		<property name="userDAO" ref="userDAO" />
+		<property name="fileDAO" ref="fileDAO" />
+	</bean>
+	<bean id="fileDAO" class="com.aci.training.dao.FileDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	<bean id="userDAO" class="com.aci.training.dao.UserDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	<bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager" />
+	<bean name="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/jsftraining" />
+		<property name="username" value="jsftraining" />
+		<property name="password" value="jsftraining" />
+	</bean>
+	<bean name="springUtil" class="com.aci.training.presentation.utils.SpringUtil" />
+
+</beans>
