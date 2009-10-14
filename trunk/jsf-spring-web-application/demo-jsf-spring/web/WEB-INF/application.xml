@@ -10,14 +10,14 @@
 	 	http://www.springframework.org/schema/util
 	 	http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
-	<bean id="services" class="com.aci.training.bl.Services">
+	<bean id="services" class="demo.jsf_spring_app.bl.Services">
 		<property name="userDAO" ref="userDAO" />
 		<property name="fileDAO" ref="fileDAO" />
 	</bean>
-	<bean id="fileDAO" class="com.aci.training.dao.FileDAO">
+	<bean id="fileDAO" class="demo.jsf_spring_app.dao.FileDAO">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
-	<bean id="userDAO" class="com.aci.training.dao.UserDAO">
+	<bean id="userDAO" class="demo.jsf_spring_app.dao.UserDAO">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	<bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -35,6 +35,6 @@
 		<property name="username" value="jsftraining" />
 		<property name="password" value="jsftraining" />
 	</bean>
-	<bean name="springUtil" class="com.aci.training.presentation.utils.SpringUtil" />
+	<bean name="springUtil" class="demo.jsf_spring_app.presentation.utils.SpringUtil" />
 
 </beans>
