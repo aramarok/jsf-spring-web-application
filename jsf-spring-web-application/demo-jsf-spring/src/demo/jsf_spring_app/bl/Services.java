@@ -2,8 +2,6 @@ package demo.jsf_spring_app.bl;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import demo.jsf_spring_app.dao.FileDAO;
 import demo.jsf_spring_app.dao.UserDAO;
 import demo.jsf_spring_app.model.File;
@@ -45,7 +43,6 @@ public class Services {
 		return userDAO.updateUser(user);
 	}
 
-	@Transactional
 	public File addFileToUser(String userName, File file) {
 		if (userDAO.getUser(userName) != null) {
 			file.setUserName(userName);
