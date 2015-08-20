@@ -1,0 +1,1 @@
+Demo web application using JSF, icefaces and spring integration.
